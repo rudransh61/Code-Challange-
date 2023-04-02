@@ -1,22 +1,25 @@
-import math
 import turtle
 
 sc = turtle.Screen()
-sc.screensize(400,400)
+sc.screensize(10000,10000)
 sc.bgcolor("black")
 
 t = turtle.Turtle()
 t.color("white")
-def branch(x,y,angle):
-    if(y!=0):
-        t.lt(angle)
-    t.penup()
-    t.goto(x,y)
-    t.pendown()
-    t.lt(angle)
-    t.fd(50)
-    branch(x-50*math.sin(math.radians(angle)),y+50*math.cos(math.radians(angle)),30)
-
-branch(0,0,90)
+def tree(branchLen,t):
+    if branchLen > 2:
+        t.forward(branchLen)
+        t.right(20)
+        tree(branchLen-15,t)
+        t.left(40)
+        tree(branchLen-15,t)
+        t.right(20)
+        t.backward(branchLen)
+t.left(90)
+t.up()
+t.backward(100)
+t.down()
+t.color("green")
+tree(250,t)
 
 turtle.done()
